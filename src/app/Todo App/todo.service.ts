@@ -11,20 +11,30 @@ export type FilterType = 'all' | 'active' | 'completed';
 @Injectable ({providedIn:'root'})
 export class TodoStoreService {
     private readonly STORAGEKEY = 'my-todo-list';
+    private readonly FILTERKEY = 'my-todo-filter';
+
 
    todos = signal<Todo[]>([]);
    filter = signal<FilterType>('all');
 
    constructor() {
-    this.todos.set(this.loadFromStorage());
+    this.todos.set(this.loadTodoFromStorage());
+
+    const storedFilter = localStorage.getItem(this.FILTERKEY) as FilterType | null;
+    if (storedFilter === 'all' || storedFilter === 'active' || storedFilter === 'completed') {
+        this.filter.set(storedFilter);
+    }
 
     effect(()=>{
-        const todos = this.todos();
-        localStorage.setItem(this.STORAGEKEY, JSON.stringify(todos));
+        localStorage.setItem(this.STORAGEKEY,JSON.stringify(this.todos()));
     });
+
+    effect(()=>{
+        localStorage.setItem(this.FILTERKEY, this.filter());
+    })
    }
 
-   private loadFromStorage(): Todo[] {
+   private loadTodoFromStorage(): Todo[] {
     const raw = localStorage.getItem(this.STORAGEKEY);
     return raw ? JSON.parse(raw) as Todo[] : [];
    }

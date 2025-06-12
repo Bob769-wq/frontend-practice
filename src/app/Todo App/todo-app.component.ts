@@ -45,14 +45,15 @@ import { FilterType, TodoStoreService } from "./todo.service";
                     <input [value]="todo.title"
                     (input)="editedTitle.set($any($event.target).value)"
                     (keydown.enter)="saveEdit(todo.id)"
-                    (blur)="cancelEdit()" />
+                    (keydown.escape)="cancelEdit()"
+                    (blur)="saveEdit(todo.id)" />
                 } @else {
                     <span [class.done]="todo.done "
                     (dblclick)="startEdit(todo.id, todo.title)">
                     {{todo.title}}
                     </span>
                 }
-                <button (click)="remove(todo.id)">x</button>
+                <button (click)="remove(todo.id)" class="text-red-500 hover:text-white hover:bg-red-600 rounded-full font-bold transition" >x</button>
             </li>
         }
     </ul>

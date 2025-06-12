@@ -1,4 +1,4 @@
-import {Injectable,signal} from '@angular/core';
+import {effect, Injectable,signal} from '@angular/core';
 
 export interface Todo {
     id:number;
@@ -10,9 +10,24 @@ export type FilterType = 'all' | 'active' | 'completed';
 
 @Injectable ({providedIn:'root'})
 export class TodoStoreService {
+    private readonly STORAGEKEY = 'my-todo-list';
+
    todos = signal<Todo[]>([]);
    filter = signal<FilterType>('all');
 
+   constructor() {
+    this.todos.set(this.loadFromStorage());
+
+    effect(()=>{
+        const todos = this.todos();
+        localStorage.setItem(this.STORAGEKEY, JSON.stringify(todos));
+    });
+   }
+
+   private loadFromStorage(): Todo[] {
+    const raw = localStorage.getItem(this.STORAGEKEY);
+    return raw ? JSON.parse(raw) as Todo[] : [];
+   }
 
    add(title:string){
     const newTodo: Todo = {

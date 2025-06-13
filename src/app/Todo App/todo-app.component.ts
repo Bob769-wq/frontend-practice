@@ -17,11 +17,18 @@ import { FilterType, TodoStoreService } from "./todo.service";
     class="flex-1 border rounded px-2 py-1"
     [value]="input()" (input)="input.set($any($event.target).value)" 
     placeholder="What needs to be done" />
-    <button
+
+     <button
     class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition"
     (click)="add()">Add</button>
     </div>
-    
+
+    <div class="flex gap-2">
+        <input class="flex-1 border rounded px-2 py-1"
+        [value]="search()"
+        (input)="search.set($any($event.target).value)"
+        placeholder="Search todos" />
+    </div>  
     <div class="space-x-2">     
         <button
         [class.active]="filter() === 'all'"
@@ -49,7 +56,8 @@ import { FilterType, TodoStoreService } from "./todo.service";
                     (blur)="saveEdit(todo.id)" />
                 } @else {
                     <span [class.done]="todo.done "
-                    (dblclick)="startEdit(todo.id, todo.title)">
+                    (dblclick)="startEdit(todo.id, todo.title)"
+                    [innerHTML]="highlight(todo.title, search())">
                     {{todo.title}}
                     </span>
                 }
@@ -77,6 +85,7 @@ import { FilterType, TodoStoreService } from "./todo.service";
 export class TodoAppComponent {
     private todoStore = inject(TodoStoreService);
 
+    search = signal('');
     input = signal('');
     filter = this.todoStore.filter;
     editedTitle = signal('');
@@ -102,9 +111,16 @@ export class TodoAppComponent {
     visibleTodos = computed(()=>{
         const list = this.todoStore.todos();
         const f = this.todoStore.filter();
+        const keyword = this.search().toLowerCase();
+
+        let filtered = list;
+
         if(f=== 'active') return list.filter(t => !t.done);
         if(f === 'completed') return list.filter(t =>t.done);
-        return list;
+        if(keyword) {
+            filtered = filtered.filter(t=>t.title.toLowerCase().includes(keyword));
+        }
+        return filtered;
     })
     remaining = computed(()=> this.todoStore.todos().filter(t=>!t.done).length);
 
@@ -130,5 +146,12 @@ export class TodoAppComponent {
 
     setFilter(f: FilterType) {
         this.todoStore.setFilter(f);
+    }
+
+    highlight(text: string, keyword: string): string{
+        if(!keyword) return text;
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+        const regex = new RegExp(`(${escapedKeyword})`,'gi');
+        return text.replace(regex, `<mark>$1</mark>`);
     }
 }

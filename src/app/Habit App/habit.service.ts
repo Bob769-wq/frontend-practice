@@ -36,4 +36,15 @@ export class HabitService {
             )
         )
     }
+
+    addHabit(title: string) {
+        const newHabit: Habit = {
+            id:this.nextId++,
+            title,
+            done: false
+        };
+        if(newHabit.title) {
+            this.habits.update(habits=>[...habits, newHabit]);
+        }
+    }
 }

@@ -10,7 +10,11 @@ export interface Habit {
 export class HabitService {
     private nextId = 4;
 
-    habits= signal<Habit[]>([]);
+    habits= signal<Habit[]>([
+        {id:1, title:'read', done: false},
+        {id:2, title:'sleep', done: true},
+        {id:3, title:'play', done: false}
+    ]);
 
     totalCount = computed(()=>this.habits().length);
 

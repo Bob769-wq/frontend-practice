@@ -7,24 +7,35 @@ import { CommonModule } from "@angular/common";
     standalone:true,
     imports:[CommonModule,RouterModule],
     template:`
-    <h2>Search Page</h2>
-
+    <h2 class="text-xl mb-2">Search Page</h2>
+    
     <label>
         Keyword:
         <input type="text" [value]="keywordInput()" 
-        (input)="keywordInput.set($any($event.target).value)">
+        (input)="setKeyword($any($event.target).value)">
     </label>
-    <br>
+        <br>
     <label>
         Page:
         <input type="number" [value]="pageInput()"
-        (input)="keywordInput.set($any($event.target).value)">
+        (input)="setPage($any($event.target).value)">           
     </label>
     <br>
     
     <button (click)="applySearch()">Apply Search</button>
-    <p>Current keyword from URL: {{currentKeyword()}}</p>
-    <p>Current page from URL: {{currentPage()}}</p>
+    <p><strong>Current keyword:</strong> {{currentKeyword()}}</p>
+    <p><strong>Current page:</strong> {{currentPage()}}</p>
+
+    <ul class="list-disc ps-6">
+    @for (item of pagedResults(); track item) {
+        <li>{{item}}</li>
+    }
+    </ul>
+
+    <div class="mt-4">
+        <button (click)="prevPage()" class="m-3">Previous</button>
+        <button (click)="nextPage()" class="m-3">Next</button>
+    </div>
     `
 })
 
@@ -36,7 +47,15 @@ export class SearchComponent {
     pageInput =signal(1);
 
     currentKeyword = computed(()=>this.route.snapshot.queryParamMap.get('keyword')??'');
-    currentPage = computed(()=>Number(this.route.snapshot.queryParamMap.get('page'))||1);
+    currentPage = computed(()=>Number(this.route.snapshot.queryParamMap.get('page') ?? '1'));
+
+    setKeyword(value: string) {
+        this.keywordInput.set(value);
+    }
+
+    setPage(value:string) {
+        this.pageInput.set(Number(value));
+    }
 
     applySearch() {
         this.router.navigate(['/search'], {
@@ -46,4 +65,30 @@ export class SearchComponent {
             },
         });
     }
-}
+
+    readonly allData =['Apple', 'Banana', 'Cherry', 'Durian', 'Eggplant','Fig','Grape']
+    readonly searchResults = computed (()=>{
+        const keyword = this.currentKeyword().toLowerCase();
+        return keyword 
+        ? this.allData.filter(item=> item.toLowerCase().includes(keyword))
+        : this.allData;
+    });
+
+    readonly pagedResults = computed(()=>{
+        const page = this.currentPage();
+        const start =(page -1) * 2;
+        return this.searchResults().slice(start, start +2);
+    })
+
+    prevPage() {
+        const newPage= Math.max(1, this.currentPage()-1);
+        this.pageInput.set(newPage);
+        this.applySearch();
+    }
+
+    nextPage() {
+        const newPage = this.currentPage() + 1;
+        this.pageInput.set(newPage);
+        this.applySearch();
+    }
+}   

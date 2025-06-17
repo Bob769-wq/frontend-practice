@@ -1,4 +1,4 @@
-import { Component, signal} from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -10,16 +10,13 @@ import { RouterModule } from '@angular/router';
 
   <nav class="flex gap-4 mb-4">
     <a [routerLink]="['/']" >Home</a>
-    <a [routerLink]="[aboutPath()]">About</a>
-    <a [routerLink]="[userList()]">Users</a>
-    <a [routerLink]="['/search']">Search</a>
+    <a [routerLink]="['/about']">About</a>
+    <a [routerLink]="['/search']" class="text-blue-600">Search</a>
+    <a [routerLink]="['/shop']">Shop</a>
   </nav>
 
   <router-outlet></router-outlet>
   `,
-  styles:``
 })
 export class AppComponent {
-  readonly aboutPath =signal('/about');
-  readonly userList =signal('/users');
 }

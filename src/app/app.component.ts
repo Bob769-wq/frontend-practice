@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
     <a [routerLink]="['/']" >Home</a>
     <a [routerLink]="[aboutPath()]">About</a>
     <a [routerLink]="[userList()]">Users</a>
+    <a [routerLink]="['/search']">Search</a>
   </nav>
 
   <router-outlet></router-outlet>

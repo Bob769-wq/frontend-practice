@@ -22,6 +22,9 @@ import { CommonModule } from "@angular/common";
     </label>
     <br>
     
+    <button (click)="applySearch()">Apply Search</button>
+    <p>Current keyword from URL: {{currentKeyword()}}</p>
+    <p>Current page from URL: {{currentPage()}}</p>
     `
 })
 
@@ -31,4 +34,16 @@ export class SearchComponent {
 
     keywordInput = signal('');
     pageInput =signal(1);
+
+    currentKeyword = computed(()=>this.route.snapshot.queryParamMap.get('keyword')??'');
+    currentPage = computed(()=>Number(this.route.snapshot.queryParamMap.get('page'))||1);
+
+    applySearch() {
+        this.router.navigate(['/search'], {
+            queryParams: {
+                keyword: this.keywordInput(),
+                page:this.pageInput(),
+            },
+        });
+    }
 }

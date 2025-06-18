@@ -1,6 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, signal } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { ProductService } from "./product.service";
+import {toSignal} from "@angular/core/rxjs-interop";
+import {map} from "rxjs";
 
 @Component({
     selector:'app-product-detail',
@@ -15,14 +18,15 @@ import { ActivatedRoute } from "@angular/router";
 })
 
 export class ProductDetailComponent {
-    private route = inject(ActivatedRoute);
-    readonly productId = signal<string | null>(null);
+    private readonly route = inject(ActivatedRoute);
+    private readonly productService = inject(ProductService);
 
-    constructor() {
-        effect(()=>{
-            this.route.paramMap.subscribe(params=>{
-                this.productId.set(params.get('id'));
-            });
-        });
-    }
+    readonly productId = toSignal(
+        this.route.paramMap.pipe(map(p=>Number(p.get('id'))))
+    );
+
+    readonly product = computed(()=> {
+        const id =this.productId();
+        return id !== undefined? this.productService.getProductById(id): undefined;
+    });
 }

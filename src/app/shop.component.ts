@@ -1,11 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, signal } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { ProductService } from "./product.service";
 
-interface Product {
-    id:number;
-    name:string;
-}
+
 
 @Component ({
     selector:'app-shop',
@@ -35,9 +33,6 @@ interface Product {
 })
 
 export class ShopComponent{
-    readonly products = signal<Product[]>([
-        {id:1, name:'T-Shirt'},
-        {id:2, name:'Sneakers'},
-        {id:3, name:'Backpack'},
-    ]);
+   private readonly productService = inject(ProductService);
+   readonly products = this.productService.products;
 } 

@@ -1,21 +1,43 @@
-import { Component } from "@angular/core";
-import {  RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { Component, signal } from "@angular/core";
+import { RouterModule } from "@angular/router";
+
+interface Product {
+    id:number;
+    name:string;
+}
 
 @Component ({
     selector:'app-shop',
     standalone:true,
-    imports:[RouterModule],
+    imports:[RouterModule, CommonModule],
     template:`
-    <h1 class="text-2xl font-bold mb-4">🛍️ Shop Page</h1>
-    <div class="flex gap-6">
+    <h1 class="text-2xl font-bold mb-4">🛍️ Shop</h1>
+    <div class="flex gap-8">
+        <section class="w-1/2">
+            <h2 class="text-xl mb-2">Product List</h2>
+            <ul class="list-disc ps-6">
+                @for (product of products(); track product.id) {
+                    <li>
+                        <a [routerLink]="['/shop', 'detail', product.id]"
+                        class="text-blue-600 hover:underline">
+                            {{product.name}}
+                        </a>
+                    </li>
+                }
+            </ul>
+        </section>
         <section class="w-1/2">
             <router-outlet></router-outlet>
         </section>
-        <section class="w-1/2">
-            <router-outlet name="detail"></router-outlet>
-        </section>
     </div>
-    `,
+    `
 })
 
-export class ShopComponent {}
+export class ShopComponent{
+    readonly products = signal<Product[]>([
+        {id:1, name:'T-Shirt'},
+        {id:2, name:'Sneakers'},
+        {id:3, name:'Backpack'},
+    ]);
+} 

@@ -4,6 +4,7 @@ import { AboutComponent } from './about.component';
 import { SearchComponent } from './search.component';
 import { ShopComponent } from './shop.component';
 import { ProductDetailComponent } from './product-detail.component';
+import {ProductDetailGuard} from './product-detail.guard'
 
 export const appRoutes: Route[] = [
   { path: '', component: HomeComponent },
@@ -13,7 +14,9 @@ export const appRoutes: Route[] = [
     path: 'shop', 
     component:ShopComponent,
     children: [
-      {path:'detail/:id',component:ProductDetailComponent},
+      {path:'detail/:id',component:ProductDetailComponent,
+        canActivate:[ProductDetailGuard],
+      },
     ],
   },
   {path:'**', redirectTo:''},

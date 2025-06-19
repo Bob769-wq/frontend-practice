@@ -4,7 +4,6 @@ import { AboutComponent } from './about.component';
 import { SearchComponent } from './search.component';
 import { ShopComponent } from './shop.component';
 import { ProductDetailComponent } from './product-detail.component';
-import {ProductDetailGuard} from './product-detail.guard'
 import { NotFoundComponent } from './not-found.component';
 
 export const appRoutes: Route[] = [
@@ -17,7 +16,6 @@ export const appRoutes: Route[] = [
     children: [
       {path:'', redirectTo:'1', pathMatch:'full'},
       {path:':id',component:ProductDetailComponent,
-        canActivate:[ProductDetailGuard],
       },
     ],
   },

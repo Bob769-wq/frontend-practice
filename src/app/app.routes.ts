@@ -15,6 +15,7 @@ export const appRoutes: Route[] = [
     path: 'shop', 
     component:ShopComponent,
     children: [
+      {path:'', redirectTo:'1', pathMatch:'full'},
       {path:':id',component:ProductDetailComponent,
         canActivate:[ProductDetailGuard],
       },

@@ -17,7 +17,7 @@ import { ProductService } from "./product.service";
             <ul class="list-disc ps-6">
                 @for (product of products(); track product.id) {
                     <li>
-                        <a [routerLink]="['/shop', 'detail', product.id]"
+                        <a [routerLink]="['/shop', product.id]"
                         class="text-blue-600 hover:underline">
                             {{product.name}}
                         </a>

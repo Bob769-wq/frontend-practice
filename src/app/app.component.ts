@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   <nav class="flex gap-4 mb-4">
     <a routerLink="/" >Home</a>
     <a routerLink ="/about">About</a>
-    <a routerLink ="/search" class="text-blue-600">Search</a>
+    <a routerLink ="/search" >Search</a>
     <a routerLink ="/shop">Shop</a>
   </nav>
 

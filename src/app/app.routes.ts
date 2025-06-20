@@ -8,6 +8,9 @@ import { NotFoundComponent } from './not-found.component';
 
 export const appRoutes: Route[] = [
   { path: '', component: HomeComponent },
+  {path:'profile',
+    loadComponent:()=>import('./profile.component').then(m=>m.ProfileComponent),
+  },
   { path: 'about', component: AboutComponent },
   { path: 'search', component: SearchComponent },
   {

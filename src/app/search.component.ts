@@ -43,7 +43,8 @@ export class SearchComponent {
     private router = inject(Router);
 
     readonly keyword = input<string>('');
-    readonly page = input<number>(1);
+    readonly rawPage = input<string>('1');
+    readonly page = computed(()=>Number(this.rawPage()) || 1);
 
     keywordInput = signal(this.keyword());
     pageInput = signal(this.page());
@@ -87,7 +88,7 @@ export class SearchComponent {
     }
 
     nextPage() {
-        const newPage = this.page() + 1;
+        const newPage = this.page()+1;
         this.pageInput.set(newPage);
         this.applySearch();
     }

@@ -1,5 +1,5 @@
-import { Component,signal,computed,inject } from "@angular/core";
-import {Router,ActivatedRoute, RouterModule} from '@angular/router';
+import { Component,input,computed,inject, signal } from "@angular/core";
+import {Router, RouterModule} from '@angular/router';
 import { CommonModule } from "@angular/common";
 
 @Component ({
@@ -23,8 +23,8 @@ import { CommonModule } from "@angular/common";
     <br>
     
     <button (click)="applySearch()">Apply Search</button>
-    <p><strong>Current keyword:</strong> {{currentKeyword()}}</p>
-    <p><strong>Current page:</strong> {{currentPage()}}</p>
+    <p><strong>Current keyword:</strong> {{keyword()}}</p>
+    <p><strong>Current page:</strong> {{page()}}</p>
 
     <ul class="list-disc ps-6">
     @for (item of pagedResults(); track item) {
@@ -41,22 +41,21 @@ import { CommonModule } from "@angular/common";
 
 export class SearchComponent {
     private router = inject(Router);
-    private route = inject(ActivatedRoute);
 
-    keywordInput = signal('');
-    pageInput =signal(1);
+    readonly keyword = input<string>('');
+    readonly page = input<number>(1);
 
-    currentKeyword = computed(()=>this.route.snapshot.queryParamMap.get('keyword')??'');
-    currentPage = computed(()=>Number(this.route.snapshot.queryParamMap.get('page') ?? '1'));
+    keywordInput = signal(this.keyword());
+    pageInput = signal(this.page());
 
     setKeyword(value: string) {
         this.keywordInput.set(value);
     }
 
-    setPage(value:string) {
+    setPage(value: string) {
         this.pageInput.set(Number(value));
     }
-
+    
     applySearch() {
         this.router.navigate(['/search'], {
             queryParams: {
@@ -67,27 +66,28 @@ export class SearchComponent {
     }
 
     readonly allData =['Apple', 'Banana', 'Cherry', 'Durian', 'Eggplant','Fig','Grape']
+    
     readonly searchResults = computed (()=>{
-        const keyword = this.currentKeyword().toLowerCase();
+        const keyword = this.keyword().toLowerCase();
         return keyword 
         ? this.allData.filter(item=> item.toLowerCase().includes(keyword))
         : this.allData;
     });
 
     readonly pagedResults = computed(()=>{
-        const page = this.currentPage();
+        const page = this.page();
         const start =(page -1) * 2;
         return this.searchResults().slice(start, start +2);
     })
 
     prevPage() {
-        const newPage= Math.max(1, this.currentPage()-1);
+        const newPage= Math.max(1, this.page()-1);
         this.pageInput.set(newPage);
         this.applySearch();
     }
 
     nextPage() {
-        const newPage = this.currentPage() + 1;
+        const newPage = this.page() + 1;
         this.pageInput.set(newPage);
         this.applySearch();
     }

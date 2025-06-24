@@ -1,8 +1,22 @@
 import { Component, inject} from "@angular/core";
-import { ReactiveFormsModule, FormBuilder,Validators, FormArray } from "@angular/forms";
+import { ReactiveFormsModule, FormBuilder,Validators, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+
+interface ProfileForm {
+    firstName: FormControl<string>;
+    lastName:FormControl<string>;
+    address:FormGroup<{
+        street:FormControl<string>;
+        city:FormControl<string>;
+        state:FormControl<string>;
+        zip:FormControl<string>;
+    }>;
+    aliases:FormArray<FormControl<string>>;
+}
 @Component({
     selector:'app-profile-editor',
+    standalone:true,
+     imports:[ReactiveFormsModule, CommonModule],
     template:`
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <label for="first-name">First Name:</label>
@@ -47,25 +61,28 @@ import { CommonModule } from "@angular/common";
         <p>Form Status: {{profileForm.status}}</p>
     </form>
     `,
-    imports:[ReactiveFormsModule, CommonModule]
 })
 
 export class ProfileEditorComponent {
     private formBuilder = inject (FormBuilder);
-    profileForm = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: [''],
-        address: this.formBuilder.group({
-            street:[''],
-            city: [''],
-            state: [''],
-            zip: [''],
+
+
+    profileForm = this.formBuilder.nonNullable.group<ProfileForm>({
+        firstName: this.formBuilder.nonNullable.control('', Validators.required),
+        lastName:this.formBuilder.nonNullable.control(''),
+        address: this.formBuilder.nonNullable.group({
+            street:this.formBuilder.nonNullable.control(''),
+            city: this.formBuilder.nonNullable.control(''),
+            state: this.formBuilder.nonNullable.control(''),
+            zip: this.formBuilder.nonNullable.control(''),
         }),
-        aliases:this.formBuilder.array([this.formBuilder.control('')]),
+        aliases:this.formBuilder.nonNullable.array([
+            this.formBuilder.nonNullable.control('')
+        ]),
     });
 
     get aliases() {
-        return this.profileForm.get('aliases') as FormArray;
+        return this.profileForm.get('aliases') as FormArray<FormControl<string>>;
     }
 
     updateProfile() {
@@ -78,7 +95,7 @@ export class ProfileEditorComponent {
     }
 
     addAlias() {
-        this.aliases.push(this.formBuilder.control(''));
+        this.aliases.push(this.formBuilder.nonNullable.control(''));
     }
 
     onSubmit() {

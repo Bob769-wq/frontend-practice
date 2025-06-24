@@ -17,6 +17,6 @@ export class NameEditorComponent {
     name = new FormControl('');
 
     updateName() {
-        this.name.setValue('Nancy');
+        this.name.setValue('Harry');
     }
 }

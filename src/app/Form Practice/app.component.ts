@@ -1,14 +1,15 @@
 import { Component } from "@angular/core";
 import { NameEditorComponent } from "./name-editor.component";
 import { ProfileEditorComponent } from "./profile-editor.component";
+import { UserFormComponent } from "./user-form.component";
 
 @Component ({
     selector:'app-root',
-    imports: [NameEditorComponent, ProfileEditorComponent],
+    imports: [NameEditorComponent, ProfileEditorComponent, UserFormComponent],
     template:`
-    <h1>Reactive Forms</h1>
     <app-name-editor/>
-    <app-profile-editor>
+    <app-profile-editor/>
+    <app-user-form/>
     `
 })
 

@@ -1,5 +1,5 @@
 import { Component, inject} from "@angular/core";
-import { ReactiveFormsModule, FormBuilder,Validators, FormArray, FormControl, FormGroup } from "@angular/forms";
+import { ReactiveFormsModule,Validators, FormArray, FormControl, FormGroup, NonNullableFormBuilder } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 interface ProfileForm {
@@ -78,20 +78,19 @@ interface ProfileForm {
 })
 
 export class ProfileEditorComponent {
-    private formBuilder = inject (FormBuilder);
-
-
-    profileForm = this.formBuilder.nonNullable.group<ProfileForm>({
-        firstName: this.formBuilder.nonNullable.control('', Validators.required),
-        lastName:this.formBuilder.nonNullable.control(''),
-        address: this.formBuilder.nonNullable.group({
-            street:this.formBuilder.nonNullable.control(''),
-            city: this.formBuilder.nonNullable.control(''),
-            state: this.formBuilder.nonNullable.control(''),
-            zip: this.formBuilder.nonNullable.control(''),
+    #fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
+    //#是private
+    profileForm = this.#fb.group<ProfileForm>({
+        firstName: this.#fb.control('', Validators.required),
+        lastName:this.#fb.control(''),
+        address: this.#fb.group({
+            street:this.#fb.control(''),
+            city: this.#fb.control(''),
+            state: this.#fb.control(''),
+            zip: this.#fb.control(''),
         }),
-        aliases:this.formBuilder.nonNullable.array([
-            this.formBuilder.nonNullable.control('')
+        aliases:this.#fb.array([
+            this.#fb.control('')
         ]),
     });
 
@@ -109,10 +108,10 @@ export class ProfileEditorComponent {
     }
 
     addAlias() {
-        this.aliases.push(this.formBuilder.nonNullable.control(''));
+        this.aliases.push(this.#fb.control(''));
     }
 
     onSubmit() {
-        console.warn(this.profileForm.value);
+        console.warn(this.profileForm.getRawValue()); //getRawValue()可以把disabled的值也拿到
     }
 }

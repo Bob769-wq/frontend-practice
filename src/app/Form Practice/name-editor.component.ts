@@ -38,6 +38,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
         >
           Update Name
         </button>
+        <!-- button寫上type="button"才能讓他做其他事情不然就被抓去submit -->
       </div>
     </form>
   `

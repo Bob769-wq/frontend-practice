@@ -17,7 +17,7 @@ import { CommonModule } from "@angular/common";
         </button>
     </form>
     @if (submittedName) {
-        <p class="mt-4 text-green-600">Your name: <strong>{{submittedName}}</strong></p>
+        <p class="mt-4 max-w-xl mx-auto text-green-600">Your name: <strong>{{submittedName}}</strong></p>
     }
     `
 })

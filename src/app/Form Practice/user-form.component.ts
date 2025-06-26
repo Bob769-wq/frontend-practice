@@ -19,10 +19,28 @@ import { CommonModule } from "@angular/common";
     @if (submittedName) {
         <p class="mt-4 max-w-xl mx-auto text-green-600">Your name: <strong>{{submittedName}}</strong></p>
     }
+    
+<!-- 單向綁VS雙向綁 -->
+
+    <form class="max-w-xl mt-6 mx-auto">
+        <label>
+            Name:
+            <input type="text" name="name" [(ngModel)]="name" required
+            class="border p-1 rounded">
+        </label>
+
+        @if (name) {
+            <p class="mt-4 max-w-xl mx-auto text-blue-600">
+                You are typing: {{name | uppercase}}
+            </p>
+        }
+    </form>
     `
 })
 
 export class UserFormComponent {
+    name = '';
+
     submittedName = '';
 
     onSubmit(form:NgForm) {

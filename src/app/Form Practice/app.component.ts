@@ -4,15 +4,20 @@ import { ProfileEditorComponent } from "./profile-editor.component";
 import { UserFormComponent } from "./user-form.component";
 import { ActorFormComponent } from "./actor-form.component";
 import { CardComponent } from "./card.component";
+import { DrinkOrderComponent } from "./drink-order.component";
+import { TemplateBasicComponent } from "./templatebasic.component";
+
 
 @Component ({
     selector:'app-root',
-    imports: [NameEditorComponent, ProfileEditorComponent, UserFormComponent, ActorFormComponent, CardComponent],
+    imports: [NameEditorComponent, ProfileEditorComponent, UserFormComponent, ActorFormComponent, DrinkOrderComponent, TemplateBasicComponent, CardComponent],
     template:`
     <app-name-editor/>
     <app-profile-editor/>
     <app-user-form/>
     <app-actor-form/>
+    <app-drink-order/>
+    <app-template-basic/>
 
     <app-card>
         <h2 card-title>Title</h2>
@@ -28,6 +33,9 @@ import { CardComponent } from "./card.component";
         </ul> 
         <button card-footer class="text-sm border p-2 rounded-xl">More</button>
     </app-card>
+
+    
+   
     `
 })
 

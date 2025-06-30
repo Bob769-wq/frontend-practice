@@ -8,22 +8,12 @@ import {MatCardModule} from "@angular/material/card"
     standalone:true,
     imports:[MatButtonModule, MatToolbarModule, MatCardModule],
     template:`
-    <button mat-raised-button color="primary" (click)="increment()">
-      click:{{ count() }}
+    <mat-toolbar color="primary" class="flex justify-between">
+    <span>toolbox</span>
+    <button mat-button (click)="increment()">
+        click({{count()}})
     </button>
-    <mat-toolbar color='primary'>
-        my app
     </mat-toolbar>
-    <mat-card>
-        <mat-card-title>This is Title</mat-card-title>
-        <mat-card-content>
-            gooloogooloo
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button color="primary">1</button>
-            <button mat-button color="primary">2</button>
-        </mat-card-actions>
-    </mat-card>
     `
 })
 export class MaterialPracticeComponent {

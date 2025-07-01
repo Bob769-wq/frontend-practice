@@ -1,8 +1,7 @@
-import { Component } from "@angular/core";
+import { Component,output } from "@angular/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -13,7 +12,6 @@ import { CommonModule } from "@angular/common";
              MatIconModule,
              MatIconModule,
              MatButtonModule,
-             MatInputModule
             ],
     styles:`
 
@@ -21,7 +19,7 @@ import { CommonModule } from "@angular/common";
     template:`
     <mat-toolbar color="primary" class="flex justify-between">
         <div class="flex items-center space-x-4">
-            <button mat-icon-button>
+            <button mat-icon-button (click)="output.emit()">
                 <mat-icon>menu</mat-icon>
             </button>
             <div>
@@ -30,17 +28,12 @@ import { CommonModule } from "@angular/common";
         </div>
     
         <div class="flex items-center space-x-2">
-        <mat-form-field appearance="outline" class="w-full max-w-md">
-
-            <input matInput placeholder="搜尋">
-
-            <button mat-icon-button matSuffix aria-label="搜尋">
-                <mat-icon>search</mat-icon>
-            </button>
-        </mat-form-field>
-         <button mat-icon-button>
-            <mat-icon>microphone</mat-icon>
-        </button>
+            <div class="flex items-center border border-gray-300  rounded-full px-2">
+                <input type="text" placeholder="搜尋" class="outline-none py1 px-2 w-64 bg-transparent">
+                <button class="flex items-center">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
         </div>
 
         <div class="flex items-center">
@@ -59,5 +52,5 @@ import { CommonModule } from "@angular/common";
     `
 })
 export class HeaderComponent {
-    
+    readonly output = output<void>();
 }

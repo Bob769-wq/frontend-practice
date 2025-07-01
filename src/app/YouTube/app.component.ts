@@ -4,24 +4,24 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { HeaderComponent } from "./header.component";
 import { SidebarComponent } from "./sidebar.component";
 import { CommonModule } from "@angular/common";
+import { SidebarFlowComponent } from "./sidebarflow.component";
 
 @Component({
     selector:'app-root',
     standalone:true,
     imports: [CommonModule,
-            MatSidenavModule,
-            MatToolbarModule,
-            HeaderComponent,
-            SidebarComponent,
-    ],
+    MatSidenavModule,
+    MatToolbarModule,
+    HeaderComponent,
+    SidebarComponent, SidebarFlowComponent],
     template:`
     <mat-sidenav-container class="h-screen">
         <mat-sidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
             <app-sidebar/>
         </mat-sidenav>
 
-        <mat-sidenav mode="over" [opened]="sidenavOpened()">
-            <app-sidebar/>
+        <mat-sidenav mode="over" [opened]="sidenavOpened()" (backdropClick)="sidenavOpened.set(false)">
+            <app-sidebar-flow/>
         </mat-sidenav>
 
         <mat-sidenav-content>

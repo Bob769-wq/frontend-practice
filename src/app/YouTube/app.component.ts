@@ -5,6 +5,8 @@ import { HeaderComponent } from "./header.component";
 import { SidebarComponent } from "./sidebar.component";
 import { CommonModule } from "@angular/common";
 import { SidebarFlowComponent } from "./sidebarflow.component";
+import { VideoGridComponent } from "./video-grid.component";
+import { Video } from "./video-card.component";
 
 @Component({
     selector:'app-root',
@@ -13,7 +15,8 @@ import { SidebarFlowComponent } from "./sidebarflow.component";
     MatSidenavModule,
     MatToolbarModule,
     HeaderComponent,
-    SidebarComponent, SidebarFlowComponent],
+    SidebarComponent, SidebarFlowComponent,
+    VideoGridComponent],
     template:`
     <mat-sidenav-container class="h-screen">
         <mat-sidenav #fixedSidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
@@ -29,7 +32,9 @@ import { SidebarFlowComponent } from "./sidebarflow.component";
 
         <mat-sidenav-content>
             <app-header (toggleMenu)="toggleFlowMenu()"/>
-            <main></main>
+            <main class="pl-[100px] pt-2 pr-10">
+                <app-video-grid [videos]="videos()"/>
+            </main>
         </mat-sidenav-content>
     </mat-sidenav-container>
     `
@@ -51,4 +56,16 @@ export class AppComponent {
     onFlowMenuClosed(){
         this.flowMenuOpened.set(false);
     }
+
+    readonly videos = signal<Video[]>([
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
+        
+    ]);
 }

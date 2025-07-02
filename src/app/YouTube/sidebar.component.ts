@@ -14,28 +14,24 @@ import { CommonModule } from "@angular/common";
              RouterModule
     ],
     template:`
-    <mat-nav-list>
-        
-        <a mat-list-item routerLink="/home">
-            <mat-icon matListIcon>home</mat-icon>
-            <span matLine>home</span>
+    <nav class="flex flex-col items-center space-y-6 p-4">
+        <a routerLink="/home" class="flex flex-col items-center">
+            <mat-icon>home</mat-icon>
+            <span class="text-xs">首頁</span>
         </a>
-
-         <a mat-list-item routerLink="/subscirptions">
-            <mat-icon matListIcon>subscriptions</mat-icon>
-            <span matLine>subscirptions</span>
+        <a routerLink="/home" class="flex flex-col items-center">
+            <mat-icon>play_arrow</mat-icon>
+            <span class="text-xs">Shorts</span>
         </a>
-        
-        <a mat-list-item routerLink="/library">
-            <mat-icon matListIcon>video_library</mat-icon>
-            <span matLine>library</span>
+        <a routerLink="/home" class="flex flex-col items-center">
+            <mat-icon>subscriptions</mat-icon>
+            <span class="text-xs">訂閱內容</span>
         </a>
-
-        <a mat-list-item routerLink="/subscirptions">
-            <mat-icon matListIcon>account_circle</mat-icon>
-            <span matLine>home</span>
+        <a routerLink="/home" class="flex flex-col items-center">
+            <mat-icon>account_circle</mat-icon>
+            <span class="text-xs">個人中心</span>
         </a>
-    </mat-nav-list>
+    </nav>
     `
 })
 export class SidebarComponent {

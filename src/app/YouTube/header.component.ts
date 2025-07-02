@@ -17,7 +17,7 @@ import { CommonModule } from "@angular/common";
 
     `,
     template:`
-    <mat-toolbar color="primary" class="flex justify-between">
+    <mat-toolbar color="primary" class="flex justify-between fixed top-0 left-0 right-0 z-20">
         <div class="flex items-center space-x-4">
             <button mat-icon-button (click)="toggleMenu.emit()">
                 <mat-icon>menu</mat-icon>

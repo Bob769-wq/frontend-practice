@@ -32,7 +32,7 @@ import { Video } from "./video-card.component";
 
         <mat-sidenav-content>
             <app-header (toggleMenu)="toggleFlowMenu()"/>
-            <main class="pl-[100px] pt-2 pr-10">
+            <main class="pl-[100px] pt-20 pr-10">
                 <app-video-grid [videos]="videos()"/>
             </main>
         </mat-sidenav-content>
@@ -58,6 +58,38 @@ export class AppComponent {
     }
 
     readonly videos = signal<Video[]>([
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
         {id:'1',
          title:'帽子給我好嗎',
          channel:'Xavier',

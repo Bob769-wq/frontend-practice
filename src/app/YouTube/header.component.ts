@@ -1,4 +1,4 @@
-import { Component,output } from "@angular/core";
+import { Component } from "@angular/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
@@ -19,7 +19,7 @@ import { CommonModule } from "@angular/common";
     template:`
     <mat-toolbar color="primary" class="flex justify-between">
         <div class="flex items-center space-x-4">
-            <button mat-icon-button (click)="output.emit()">
+            <button mat-icon-button>
                 <mat-icon>menu</mat-icon>
             </button>
             <div>
@@ -55,5 +55,5 @@ import { CommonModule } from "@angular/common";
     `
 })
 export class HeaderComponent {
-    readonly output = output<void>();
+   
 }

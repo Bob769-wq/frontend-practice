@@ -16,24 +16,39 @@ import { SidebarFlowComponent } from "./sidebarflow.component";
     SidebarComponent, SidebarFlowComponent],
     template:`
     <mat-sidenav-container class="h-screen">
-        <mat-sidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
+        <mat-sidenav #fixedSidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
             <app-sidebar/>
         </mat-sidenav>
 
-        <mat-sidenav mode="over" [opened]="sidenavOpened()" (backdropClick)="sidenavOpened.set(false)">
-            <app-sidebar-flow/>
+        <mat-sidenav 
+        #flowSidenav mode="over" position="start" 
+        [opened]="flowMenuOpened()" (closed)="onFlowMenuClosed()"
+        (backdropClick)="closeFlowMenu()">
+            <app-sidebar-flow (closeMenu)="closeFlowMenu()"/>
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <app-header (output)="toggleSidenav()"/>
+            <app-header/>
             <main></main>
         </mat-sidenav-content>
     </mat-sidenav-container>
     `
 })
 export class AppComponent {
-    sidenavOpened = signal(false);
-    toggleSidenav(){
-        this.sidenavOpened.update(open=>!open)
+    flowMenuOpened = signal(false);
+    toggleFlowMenu(){
+        this.flowMenuOpened.update(open=>!open)
+    }
+
+    openFlowMenu(){
+        this.flowMenuOpened.set(true);
+    }
+
+    closeFlowMenu(){
+        this.flowMenuOpened.set(false);
+    }
+
+    onFlowMenuClosed(){
+        this.flowMenuOpened.set(false);
     }
 }

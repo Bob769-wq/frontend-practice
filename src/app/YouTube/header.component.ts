@@ -34,7 +34,7 @@ import { CommonModule } from "@angular/common";
                     <mat-icon>search</mat-icon>
                 </button>
             </div>
-            <button mat-icon-button class="">
+            <button mat-icon-button>
                 <mat-icon>microphone</mat-icon>
             </button>
         </div>

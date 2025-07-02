@@ -29,6 +29,34 @@ import { MatIconModule } from "@angular/material/icon";
       <mat-icon class="mr-4">subscriptions</mat-icon>
       <span>訂閱內容</span>
      </div>
+
+     <hr class="my-3 border-t border-gray-300" />
+
+     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+      <span>個人中心</span>
+      <mat-icon class="mr-4">arrow_forward_ios</mat-icon>
+     </div>
+     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+      <mat-icon class="mr-4">history</mat-icon>
+      <span>觀看紀錄</span>
+     </div>
+     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+      <mat-icon class="mr-4">playlist_play</mat-icon>
+      <span>播放清單</span>
+     </div>
+     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+      <mat-icon class="mr-4">watch_later</mat-icon>
+      <span>稍後觀看</span>
+     </div>
+     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+      <mat-icon class="mr-4">thumb_up</mat-icon>
+      <span>喜歡的影片</span>
+     </div>
+
+     <hr class="my-3 border-t border-gray-300" />
+
+    
+
     </aside>
     
     `

@@ -1,4 +1,4 @@
-import { Component, signal } from "@angular/core";
+import { Component, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -8,12 +8,11 @@ import { MatIconModule } from "@angular/material/icon";
     standalone:true,
     imports:[MatIconModule,CommonModule],
     template:`
-    @if (isSidebarOpen()) {
     <aside class="w-[240px] h-full bg-gray-100 p-4 shadow-md">
      
      <button
      class="flex items-center w-full px-3 py-2 rounded-lg cursor-pointer"
-     (click)="toggleSidebar()">
+     (click)="closeMenu.emit()">
      <mat-icon class="mr-4">menu</mat-icon>
      <span>YouTube</span>
      </button>
@@ -31,13 +30,9 @@ import { MatIconModule } from "@angular/material/icon";
       <span>訂閱內容</span>
      </div>
     </aside>
-    }
+    
     `
 })
 export class SidebarFlowComponent {
-readonly isSidebarOpen = signal(true);
-
-toggleSidebar() {
-    this.isSidebarOpen.update(v=>!v)
-}
+    readonly closeMenu = output<void>();
 }

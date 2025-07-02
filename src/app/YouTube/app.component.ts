@@ -28,7 +28,7 @@ import { SidebarFlowComponent } from "./sidebarflow.component";
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <app-header/>
+            <app-header (toggleMenu)="toggleFlowMenu()"/>
             <main></main>
         </mat-sidenav-content>
     </mat-sidenav-container>

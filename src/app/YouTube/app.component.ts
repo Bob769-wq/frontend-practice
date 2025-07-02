@@ -26,7 +26,7 @@ import { Video } from "./video-card.component";
         <mat-sidenav 
         #flowSidenav mode="over" position="start" 
         [opened]="flowMenuOpened()" (closed)="onFlowMenuClosed()"
-        (backdropClick)="closeFlowMenu()">
+        hasBackdrop="true" (backdropClick)="closeFlowMenu()">
             <app-sidebar-flow (closeMenu)="closeFlowMenu()"/>
         </mat-sidenav>
 
@@ -58,6 +58,22 @@ export class AppComponent {
     }
 
     readonly videos = signal<Video[]>([
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
+        {id:'1',
+         title:'帽子給我好嗎',
+         channel:'Xavier',
+         thumbnailUrl:'thumbnails/test.jpeg',
+         channelpic:'thumbnails/Xavier.webp',
+         views:789,
+         createdAt:'2010-07-02'
+        },
         {id:'1',
          title:'帽子給我好嗎',
          channel:'Xavier',

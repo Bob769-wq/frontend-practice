@@ -8,6 +8,7 @@
     standalone:true,
     imports:[CommonModule,VideoGridComponent],
     template:`
+    <h2 class="text-xl font-bold mb-4">最新</h2>
     <app-video-grid [videos]="videos()"/>
     `
  })

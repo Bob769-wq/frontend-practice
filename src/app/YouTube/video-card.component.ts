@@ -17,21 +17,28 @@ export interface Video {
     standalone:true,
     imports:[CommonModule, MatCardModule],
     template:`
-    <mat-card class="w-full  flex flex-col shadow-none">
-        <img  mat-card-image [src]="video().thumbnailUrl" alt="{{video().title}}">
-        <mat-card-content class="py-4 mt-2 overflow-hidden">
+    <div class="w-full flex flex-col">
+        <img [src]="video().thumbnailUrl" 
+        alt="video().title"
+        class="w-full object-cover rounded-lg">
+
+        <div class="py-4 mt-2 overflow-hidden">
             <div class="flex gap-3">
-                <img [src]="video().channelpic" alt="{{video().channel}}"
+                <img [src]="video().channelpic" 
+                alt="video().channel"
                 class="w-10 h-10 rounded-full object-cover">
-            
-            <div class="flex flex-col">
-            <h3 class="font-semibold text-base mb-1">{{video().title}}</h3>
-            <p class="text-sm text-gray-600">{{video().channel}}</p>
-            <p>觀看次數：{{video().views | number}}次</p>
-            </div>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                <div class="flex flex-col">
+                    <h3 class="font-semibold text-base mb-1 line-clamp-2">
+                        {{video().title}}
+                    </h3>
+                    <p class="text-sm text-gray-600">{{video().channel}}</p>
+                    <p class="text-sm text-gray-500">
+                        {{video().views | number}}
+                    </p>
+                </div>
+            </div>    
+        </div>
+    </div>
     `
 })
 export class VideoCardComponent {

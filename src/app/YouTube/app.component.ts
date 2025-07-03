@@ -66,54 +66,8 @@ export class AppComponent {
          views:789,
          createdAt:'2010-07-02'
         },
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
+        
+       
         
     ]);
 }

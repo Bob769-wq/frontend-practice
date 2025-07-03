@@ -18,17 +18,18 @@ export interface Video {
     imports:[CommonModule, MatCardModule],
     template:`
     <div class="w-full flex flex-col">
+        <div class="w-full overflow-hidden aspect-video rounded-lg" >
         <img [src]="video().thumbnailUrl" 
-        alt="video().title"
-        class="w-full object-cover rounded-lg">
-
-        <div class="py-4 mt-2 overflow-hidden">
+        [alt]="video().title"
+        class="w-full h-full object-cover rounded-lg">
+        </div>
+        <div class="py-4  overflow-hidden">
             <div class="flex gap-3">
                 <img [src]="video().channelpic" 
                 alt="video().channel"
                 class="w-10 h-10 rounded-full object-cover">
                 <div class="flex flex-col">
-                    <h3 class="font-semibold text-base mb-1 line-clamp-2">
+                    <h3 class="font-semibold mb-1 line-clamp-2 leading-tight">
                         {{video().title}}
                     </h3>
                     <p class="text-sm text-gray-600">{{video().channel}}</p>

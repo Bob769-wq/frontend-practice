@@ -61,7 +61,7 @@ export class AppComponent {
         {id:'1',
          title:'帽子給我好嗎',
          channel:'Xavier',
-         thumbnailUrl:'thumbnails/test.jpeg',
+         thumbnailUrl:'thumbnails/Xavier.webp',
          channelpic:'thumbnails/Xavier.webp',
          views:789,
          createdAt:'2010-07-02'

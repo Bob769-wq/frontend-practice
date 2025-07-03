@@ -1,16 +1,8 @@
 import { Component, input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
+import { Video } from "./video.model";
 
-export interface Video {
-    id:string;
-    title:string;
-    channel:string;
-    channelpic:string;
-    thumbnailUrl:string;
-    views:number;
-    createdAt:string;
-}
 
 @Component ({
     selector:'app-video-card',
@@ -26,7 +18,7 @@ export interface Video {
         <div class="py-4  overflow-hidden">
             <div class="flex gap-3">
                 <img [src]="video().channelpic" 
-                alt="video().channel"
+                [alt]="video().channel"
                 class="w-10 h-10 rounded-full object-cover">
                 <div class="flex flex-col">
                     <h3 class="font-semibold mb-1 line-clamp-2 leading-tight">

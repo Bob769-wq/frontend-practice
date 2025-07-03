@@ -1,7 +1,7 @@
 import { Component, input } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { VideoCardComponent, Video } from "./video-card.component";
-
+import { VideoCardComponent} from "./video-card.component";
+import { Video } from "./video.model";
 @Component({
     selector:'app-video-grid',
     standalone:true,

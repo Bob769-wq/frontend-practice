@@ -1,22 +1,19 @@
 import { Component, signal } from "@angular/core";
 import { MatSidenavModule} from "@angular/material/sidenav";
-import { MatToolbarModule } from "@angular/material/toolbar";
 import { HeaderComponent } from "./header.component";
 import { SidebarComponent } from "./sidebar.component";
 import { CommonModule } from "@angular/common";
 import { SidebarFlowComponent } from "./sidebarflow.component";
-import { VideoGridComponent } from "./video-grid.component";
-import { Video } from "./video-card.component";
+import { RouterModule } from "@angular/router";
 
 @Component({
     selector:'app-root',
     standalone:true,
     imports: [CommonModule,
     MatSidenavModule,
-    MatToolbarModule,
     HeaderComponent,
     SidebarComponent, SidebarFlowComponent,
-    VideoGridComponent],
+    RouterModule],
     template:`
     <mat-sidenav-container class="h-screen">
         <mat-sidenav #fixedSidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
@@ -33,7 +30,7 @@ import { Video } from "./video-card.component";
         <mat-sidenav-content>
             <app-header (toggleMenu)="toggleFlowMenu()"/>
             <main class="pl-[100px] pt-20 pr-10">
-                <app-video-grid [videos]="videos()"/>
+                <router-outlet/>
             </main>
         </mat-sidenav-content>
     </mat-sidenav-container>
@@ -57,17 +54,5 @@ export class AppComponent {
         this.flowMenuOpened.set(false);
     }
 
-    readonly videos = signal<Video[]>([
-        {id:'1',
-         title:'帽子給我好嗎',
-         channel:'Xavier',
-         thumbnailUrl:'thumbnails/Xavier.webp',
-         channelpic:'thumbnails/Xavier.webp',
-         views:789,
-         createdAt:'2010-07-02'
-        },
-        
-       
-        
-    ]);
+    
 }

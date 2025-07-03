@@ -15,7 +15,7 @@ import { CommonModule } from "@angular/common";
     ],
     template:`
     <nav class="flex flex-col items-center space-y-6 p-4">
-        <a routerLink="/home" class="flex flex-col items-center space-y-1">
+        <a routerLink="/" class="flex flex-col items-center space-y-1">
             <mat-icon>home</mat-icon>
             <span class="text-xs">首頁</span>
         </a>

@@ -19,15 +19,15 @@ import { CommonModule } from "@angular/common";
             <mat-icon>home</mat-icon>
             <span class="text-xs">首頁</span>
         </a>
-        <a routerLink="/home" class="flex flex-col items-center space-y-1">
+        <a routerLink="/shorts" class="flex flex-col items-center space-y-1">
             <mat-icon>play_arrow</mat-icon>
             <span class="text-xs">Shorts</span>
         </a>
-        <a routerLink="/home" class="flex flex-col items-center space-y-1">
+        <a routerLink="/subscriptions" class="flex flex-col items-center space-y-1">
             <mat-icon>subscriptions</mat-icon>
             <span class="text-xs">訂閱內容</span>
         </a>
-        <a routerLink="/home" class="flex flex-col items-center space-y-1">
+        <a routerLink="/account" class="flex flex-col items-center space-y-1">
             <mat-icon>account_circle</mat-icon>
             <span class="text-xs">個人中心</span>
         </a>

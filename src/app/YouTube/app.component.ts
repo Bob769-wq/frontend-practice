@@ -14,7 +14,7 @@ import { RouterModule } from "@angular/router";
     HeaderComponent,
     SidebarComponent, SidebarFlowComponent,
     RouterModule],
-    template:`
+    template:` 
     <mat-sidenav-container class="h-screen">
         <mat-sidenav #fixedSidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
             <app-sidebar/>
@@ -39,7 +39,7 @@ import { RouterModule } from "@angular/router";
 export class AppComponent {
     flowMenuOpened = signal(false);
     toggleFlowMenu(){
-        this.flowMenuOpened.update(open=>!open)
+        this.flowMenuOpened.update(open=>!open);
     }
 
     openFlowMenu(){

@@ -1,8 +1,14 @@
-import { Component, output } from "@angular/core";
+import { Component, output, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
 
+interface MenuItem {
+    icon: string;
+    label: string;
+    route?:string;
+    isRouterLink?:boolean;
+}
 @Component({
     selector:'app-sidebar-flow',
     standalone:true,
@@ -17,49 +23,31 @@ import { RouterModule } from "@angular/router";
      <span>YouTube</span>
      </button>
 
-     <a 
-     routerLink="/" routerLinkActive="bg-gray-200" [routerLinkActiveOptions]="{exact:true}"
-     class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">home</mat-icon>
-      <span>首頁</span>
-     </a>
-     <a 
-     routerLink="/shorts" routerLinkActive="bg-gray-200"
-     class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">play_arrow</mat-icon>
-      <span>Shorts</span>
-     </a>
-     <a 
-     routerLink="/subscriptions" routerLinkActive="bg-gray-200"
-     class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">subscriptions</mat-icon>
-      <span>訂閱內容</span>
-     </a>
+     @for (item of mainMenuItems(); track item.label) {
+        <a [routerLink]="item.route"
+            routerLinkActive="bg-gray-200"
+            [routerLinkActiveOptions]="{exact:item.route ==='/'}"
+            class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+            <mat-icon class="mr-4">{{item.icon}}</mat-icon>
+            <span>{{item.label}}</span>
+        </a>
+     }
 
      <hr class="my-3 border-t border-gray-300" />
 
-     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+      <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
       <span>個人中心</span>
       <mat-icon class="mr-4">arrow_forward_ios</mat-icon>
      </div>
-     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">history</mat-icon>
-      <span>觀看紀錄</span>
-     </div>
-     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">playlist_play</mat-icon>
-      <span>播放清單</span>
-     </div>
-     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">watch_later</mat-icon>
-      <span>稍後觀看</span>
-     </div>
-     <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
-      <mat-icon class="mr-4">thumb_up</mat-icon>
-      <span>喜歡的影片</span>
-     </div>
 
-     <hr class="my-3 border-t border-gray-300" />
+     @for (item of personalMenuItems(); track item.label) {
+        <div class="flex items-center px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-200">
+            <mat-icon class="mr-4">{{item.icon}}</mat-icon>
+            <span>{{item.label}}</span>
+        </div>
+     }
+
+     <hr class="my-3 border-t border-gray-300" /> 
 
     
 
@@ -69,4 +57,17 @@ import { RouterModule } from "@angular/router";
 })
 export class SidebarFlowComponent {
     readonly closeMenu = output<void>();
+
+    readonly mainMenuItems = signal<MenuItem[]>([
+        {icon:'home', label:'首頁', route:'/', isRouterLink:true},
+        {icon:'play_arrow', label:'Shorts', route:'/shorts', isRouterLink:true},
+        {icon:'subscriptions', label:'訂閱內容', route:'/subscriptions', isRouterLink:true}
+    ]);
+
+    readonly personalMenuItems = signal<MenuItem[]>([
+        {icon:'history', label:'觀看紀錄'},
+        {icon:'playlist_play', label:'播放清單'},
+        {icon:'watch_later', label:'稍後觀看'},
+        {icon:'thumb_up', label:'喜歡的影片'}
+    ]);
 }

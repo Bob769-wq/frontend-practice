@@ -15,7 +15,7 @@ import { Video } from "./video.model";
         [alt]="video().title"
         class="w-full h-full object-cover rounded-lg">
         </div>
-        <div class="py-4  overflow-hidden">
+        <div class="py-4">
             <div class="flex gap-3">
                 <img [src]="video().channelpic" 
                 [alt]="video().channel"

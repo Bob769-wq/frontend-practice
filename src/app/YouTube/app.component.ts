@@ -1,18 +1,15 @@
 import { Component, signal } from "@angular/core";
-import { MatSidenavModule} from "@angular/material/sidenav";
 import { HeaderComponent } from "./header.component";
 import { SidebarComponent } from "./sidebar.component";
 import { CommonModule } from "@angular/common";
-import { SidebarFlowComponent } from "./sidebarflow.component";
 import { RouterModule } from "@angular/router";
 
 @Component({
     selector:'app-root',
     standalone:true,
     imports: [CommonModule,
-    MatSidenavModule,
     HeaderComponent,
-    SidebarComponent, SidebarFlowComponent,
+    SidebarComponent,
     RouterModule],
     template:`
     <div class="h-screen grid grid-cols-[240px_1fr] grid-rows-[64px_1fr] md:grid-cols-[240px_1fr] max-md:grid-cols-1">

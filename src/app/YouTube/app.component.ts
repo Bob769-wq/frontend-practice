@@ -12,7 +12,7 @@ import { RouterModule } from "@angular/router";
     SidebarComponent,
     RouterModule],
     template:`
-    <div class="h-screen grid grid-cols-[240px_1fr] grid-rows-[64px_1fr] md:grid-cols-[240px_1fr] max-md:grid-cols-1">
+    <div class="h-screen grid grid-cols-[200px_1fr] grid-rows-[64px_1fr] max-md:grid-cols-1">
         <header class="col-span-full bg-white border-b border-gray-200 z-50">
             <app-header (toggleMenu)="toggleFlowMenu()"/>
         </header>

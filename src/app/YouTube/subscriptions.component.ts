@@ -19,7 +19,7 @@
             title:'印度F4',
             channel:'嘟嘟嚕嘟噠噠噠',
             thumbnailUrl:'thumbnails/doctor.jpeg',
-            channelpic:'thumbnails/Polish_Jerry.jpg',
+            channelPic:'thumbnails/Polish_Jerry.jpg',
             views:65655,
             createdAt:'2014-07-03',
         }

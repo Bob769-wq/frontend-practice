@@ -14,26 +14,21 @@ import { RouterModule } from "@angular/router";
     HeaderComponent,
     SidebarComponent, SidebarFlowComponent,
     RouterModule],
-    template:` 
-    <mat-sidenav-container class="h-screen">
-        <mat-sidenav #fixedSidenav mode="side" opened fixedInViewport [fixedTopGap]="64">
-            <app-sidebar/>
-        </mat-sidenav>
-
-        <mat-sidenav 
-        #flowSidenav mode="over" position="start" 
-        [opened]="flowMenuOpened()" (closed)="onFlowMenuClosed()"
-        hasBackdrop="true" (backdropClick)="closeFlowMenu()">
-            <app-sidebar-flow (closeMenu)="closeFlowMenu()"/>
-        </mat-sidenav>
-
-        <mat-sidenav-content>
+    template:`
+    <div class="h-screen grid grid-cols-[240px_1fr] grid-rows-[64px_1fr] md:grid-cols-[240px_1fr] max-md:grid-cols-1">
+        <header class="col-span-full bg-white border-b border-gray-200 z-50">
             <app-header (toggleMenu)="toggleFlowMenu()"/>
-            <main class="pl-[100px] pt-20 pr-10">
-                <router-outlet/>
-            </main>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+        </header>
+
+        <aside class="bg-white border-r border-gray-200 overflow-y-auto max-md:hidden">
+            <app-sidebar/>
+        </aside>
+
+        <main class="bg-gray-50 p-5 overflow-y-auto">
+            <router-outlet/>
+        </main>
+    </div>
+
     `
 })
 export class AppComponent {

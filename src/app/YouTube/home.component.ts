@@ -17,7 +17,7 @@ export class HomeComponent {
          title:'帽子給我好嗎',
          channel:'Xavier',
          thumbnailUrl:'thumbnails/Xavier.webp',
-         channelpic:'thumbnails/Xavier.webp',
+         channelPic:'thumbnails/Xavier.webp',
          views:789,
          createdAt:'2010-07-02'
         },    
@@ -25,7 +25,7 @@ export class HomeComponent {
          title:'帽子給我好嗎',
          channel:'Xavier',
          thumbnailUrl:'thumbnails/test.jpeg',
-         channelpic:'thumbnails/Xavier.webp',
+         channelPic:'thumbnails/Xavier.webp',
          views:789,
          createdAt:'2010-07-02'
         },    

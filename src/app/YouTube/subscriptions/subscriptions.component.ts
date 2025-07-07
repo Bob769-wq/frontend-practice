@@ -1,7 +1,7 @@
  import { Component, signal } from "@angular/core";
  import { CommonModule } from "@angular/common";
- import { VideoGridComponent } from "./video-grid.component";
- import { Video } from "./video.model";
+ import { VideoGridComponent } from "../video-grid.component";
+ import { Video } from "../video.model";
 
  @Component ({
     selector:'app-subscriptions',

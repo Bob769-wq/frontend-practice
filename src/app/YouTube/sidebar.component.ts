@@ -27,7 +27,7 @@ import { CommonModule } from "@angular/common";
         </a>
         <a routerLink="/subscriptions" routerLinkActive="bg-gray-200"
         class="flex flex-col items-center w-full
-        rounded-xl hober:bg-gray-100 transition space-y-1">
+        rounded-xl hover:bg-gray-100 transition space-y-1">
             <mat-icon>subscriptions</mat-icon>
             <span class="text-xs">訂閱內容</span>
         </a>

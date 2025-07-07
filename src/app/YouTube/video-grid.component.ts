@@ -6,7 +6,7 @@ import { Video } from "./video.model";
     standalone:true,
     imports:[CommonModule, ],
     template:`
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @for (video of videos(); track video.id) {
         <div class="w-full flex flex-col">
         <div class="w-full overflow-hidden aspect-video rounded-lg" >

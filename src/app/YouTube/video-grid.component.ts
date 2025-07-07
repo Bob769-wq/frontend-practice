@@ -4,7 +4,7 @@ import { Video } from "./video.model";
 @Component({
     selector:'app-video-grid',
     standalone:true,
-    imports:[CommonModule, ],
+    imports:[CommonModule],
     template:`
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @for (video of videos(); track video.id) {

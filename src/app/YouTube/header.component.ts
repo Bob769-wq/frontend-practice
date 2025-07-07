@@ -1,4 +1,4 @@
-import { Component, output } from "@angular/core";
+import { Component, output, signal } from "@angular/core";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { CommonModule } from "@angular/common";
@@ -41,9 +41,28 @@ import { CommonModule } from "@angular/common";
                 <mat-icon>add</mat-icon>
                 <span>建立</span>
             </button>
-            <button mat-icon class="p-2 rounded-full hover:bg-gray-100 flex items-center">
+
+
+            <div class="relative">
+            <button mat-icon class="p-2 rounded-full hover:bg-gray-100 flex items-center"
+            (click)="toggleNotifications()">
                 <mat-icon>notifications</mat-icon>
             </button>
+            
+            @if (showNotification()) {
+                <div class="absolute right-0 mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                    <div class="p-4 font-semibold border-b">通知</div>
+                    <ul>
+                        @for (notification of notifications(); track notification.id) {
+                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-3">
+                                <img [src]="notification.channelPic" alt="channel" class="w-10 h-10 rounded-full object-cover">
+                                <span class="text-sm">{{notification.text}}</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            </div>
             <button class="p-2 rounded-full hover:bg-gray-100 flex items-center">
                 <mat-icon>account_circle</mat-icon>
             </button>
@@ -54,4 +73,15 @@ import { CommonModule } from "@angular/common";
 })
 export class HeaderComponent {
    readonly toggleMenu = output<void>();
+
+   readonly showNotification = signal(false);
+   readonly notifications = signal([
+    {id:'note1', text:'呱吉有新影片', channelPic:'thumbnails/Polish_Jerry.jpg'},
+    {id:'note2', text:'張震嶽有新影片', channelPic:'thumbnails/Polish_Jerry.jpg'},
+    {id:'note3', text:'滾石唱片有新影片', channelPic:'thumbnails/Polish_Jerry.jpg'},
+   ]);
+
+   toggleNotifications(){
+    this.showNotification.update((v)=>!v);
+   }
 }

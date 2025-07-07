@@ -1,6 +1,7 @@
 import { Component, signal } from "@angular/core";
 import { HeaderComponent } from "./header.component";
 import { SidebarComponent } from "./sidebar.component";
+import { SidebarFlowComponent } from "./sidebarflow.component";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 
@@ -9,7 +10,8 @@ import { RouterModule } from "@angular/router";
     standalone:true,
     imports: [CommonModule,
     HeaderComponent,
-    SidebarComponent,
+    SidebarComponent, 
+    SidebarFlowComponent,
     RouterModule],
     template:`
     <div class="h-screen grid grid-cols-[200px_1fr] grid-rows-[64px_1fr] max-md:grid-cols-1">
@@ -24,6 +26,16 @@ import { RouterModule } from "@angular/router";
         <main class="bg-gray-50 p-5 overflow-y-auto">
             <router-outlet/>
         </main>
+
+        @if (flowMenuOpened()) {
+            <button class="fixed inset-0 bg-black/30 z-40"
+            (click)="closeFlowMenu()" aria-label="closeSidebarFlow"></button>
+            <app-sidebar-flow
+            (closeMenu)="closeFlowMenu()"
+            class="fixed top-0 left-0 h-full bg-white w-[240px] z-50 showdow-lg transition-transform"
+            [class.-translate-x-full]="!flowMenuOpened()"
+            [class.translate-x-0]="flowMenuOpened()"></app-sidebar-flow>
+        }
     </div>
 
     `

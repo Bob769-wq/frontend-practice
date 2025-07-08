@@ -9,7 +9,7 @@ import { RouterModule } from "@angular/router";
     template:`
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @for (video of videos(); track video.id) {
-            <a [routerLink]="['/watch, video.id']" class="w-full flex flex-col hover:opacity-90 transition">
+        <a [routerLink]="['/watch', video.id]" class="w-full flex flex-col hover:opacity-90 transition">
         <div class="w-full overflow-hidden aspect-video rounded-lg" >
         <img [src]="video.thumbnailUrl" 
         [alt]="video.title"

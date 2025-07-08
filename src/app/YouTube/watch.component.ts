@@ -27,10 +27,10 @@ import { VideoService } from "./video.service";
           </div>
 
           <div class="flex items-center gap-4 mt-3">
-            <button class="px-2 py-1 hover:bg-gray-100 rounded">👍</button>
-            <button class="px-2 py-1 hover:bg-gray-100 rounded">👎</button>
-            <button class="px-2 py-1 hover:bg-gray-100 rounded">分享</button>
-            <button class="px-2 py-1 hover:bg-gray-100 rounded">下載</button>
+            <button class="px-2 py-1 hover:bg-gray-100  border rounded-2xl">👍</button>
+            <button class="px-2 py-1 hover:bg-gray-100  border rounded-2xl">👎</button>
+            <button class="px-2 py-1 hover:bg-gray-100  border rounded-2xl">分享</button>
+            <button class="px-2 py-1 hover:bg-gray-100  border rounded-2xl">下載</button>
           </div>
         </div>
         
@@ -63,6 +63,7 @@ import { VideoService } from "./video.service";
       <div class="col-span-full text-center text-gray-400 py-10">404 Not Found</div>
     }
 
+<!--推薦影片區-->
     <div class="hidden lg:block">
       <p class="text-gray-400 text-sm mb-2">推薦影片</p>
       <div class="space-y-4">

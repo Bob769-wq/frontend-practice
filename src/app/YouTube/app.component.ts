@@ -82,5 +82,4 @@ export class AppComponent {
         this.flowMenuOpened.set(false);
     }
 
-    
 }

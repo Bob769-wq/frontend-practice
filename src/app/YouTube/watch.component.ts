@@ -9,16 +9,60 @@ import { VideoService } from "./video.service";
     standalone:true,
     imports:[CommonModule],
     template:`
+    <div class="px-4 py-6 max-w-screen-2xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_400px] gap-8">
     @if (video()) {
-        <div class="max-w-4xl mx-auto p-6">
-            <div class="aspect-video bg-black rounded-lg mb-4"></div>
+      <div>
+        <div
+          class="aspect-video w-full bg-black rounded-lg shadow-md max-w-full sm:max-w-xl md:max-w-2xl mx-auto lg:mx-w-4xl xl:max-w-6xl">
         </div>
+        <h1 class="text-xl font-bold mt-4">{{ video()?.title }}</h1>
 
-        <h1 class="text-xl font-bold">{{video()?.title}}</h1>
-        <p class="text-gray-600 mt-1">頻道：{{ video()?.channel }}</p>
-        <p class="text-gray-500 text-sm">{{ video()?.views }} 次觀看</p>
-        <p class="mt-4 text-gray-700">{{ video()?.description || '沒有影片描述。' }}</p>
+        <div class="flex items-center justify-between mt-3">
+          <div class="flex items-center gap-3">
+            <img [src]="video()?.channelPic" [alt]="video()?.channel" class="w-10 h-10 rounded-full object-cover" />
+            <span class="font-semibold">{{ video()?.channel }}</span>
+            <button class="bg-gray-200 px-4 py-1 rounded-2xl hover:bg-gray-300">加入</button>
+            <button class="bg-gray-100 px-4 py-1 rounded-2xl hover:bg-gray-300">訂閱</button>
+          </div>
+
+          <div class="flex items-center gap-4 mt-3">
+            <button class="px-2 py-1 hover:bg-gray-100 rounded">👍</button>
+            <button class="px-2 py-1 hover:bg-gray-100 rounded">👎</button>
+            <button class="px-2 py-1 hover:bg-gray-100 rounded">分享</button>
+            <button class="px-2 py-1 hover:bg-gray-100 rounded">下載</button>
+          </div>
+        </div>
+        
+        <div class="text-gray-900 text-sm mt-3 flex items-center gap-2">
+            <span>觀看次數：{{video()?.views}}次</span>
+            <span>發佈時間：{{video()?.createdAt}}</span>
+        </div>
+      </div>
+    } @else {
+      <div class="col-span-full text-center text-gray-400 py-10">404 Not Found</div>
     }
+
+    <div class="hidden lg:block">
+      <p class="text-gray-400 text-sm mb-2">推薦影片</p>
+      <div class="space-y-4">
+        <div class="h-24 bg-gray-200 rounded-md"></div>
+        <div class="h-24 bg-gray-200 rounded-md"></div>
+        <div class="h-24 bg-gray-200 rounded-md"></div>
+      </div>
+    </div>
+
+    <div class="block lg:hidden mt-8 px-2">
+      <p class="text-gray-400 text-sm mb-2">推薦影片</p>
+      <div class="space-y-4">
+        <div class="h-24 bg-gray-200 rounded-md"></div>
+        <div class="h-24 bg-gray-200 rounded-md"></div>
+        <div class="h-24 bg-gray-200 rounded-md"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
     `
 })
 export class WatchComponent {

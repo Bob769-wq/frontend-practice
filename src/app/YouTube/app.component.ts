@@ -17,7 +17,7 @@ import { filter } from "rxjs";
     RouterModule,
     CategoryBarComponent],
     template:`
-    <div class="h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col">
         <header class="h-16 bg-white border-b border-gray-200 z-50 flex-shrink-0">
             <app-header (toggleMenu)="toggleFlowMenu()"/>
         </header>

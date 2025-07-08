@@ -38,6 +38,26 @@ import { VideoService } from "./video.service";
             <span>觀看次數：{{video()?.views}}次</span>
             <span>發佈時間：{{video()?.createdAt}}</span>
         </div>
+        <div class="mt-6">
+            <h2 class="text-lg font-semibold mb-4">留言</h2>
+            <div class="flex items-start gap-3 mb-6">
+                <img [src]="video()?.channelPic" alt="" class="w-10 h-10 rounded-full object-cover">
+                <textarea 
+                class="flex-1 "
+                placeholder="發表留言"
+                name="" id=""></textarea>
+            </div>
+    <!--假留言-->
+    <div class="space-y-6">
+        <div class="flex gap-3">
+            <img src="thumbnails/Xavier.webp" alt="" class="w-10 h-10 rounded-full object-cover">
+            <div>
+                <p class="font-medium">Xavier</p>
+                <p class="text-sm text-gray-700">爛死</p>
+            </div>
+        </div>
+    </div>
+        </div>
       </div>
     } @else {
       <div class="col-span-full text-center text-gray-400 py-10">404 Not Found</div>

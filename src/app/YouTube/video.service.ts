@@ -18,7 +18,7 @@ export class VideoService {
          channel:'Xavier',
          thumbnailUrl:'thumbnails/test.jpeg',
          channelPic:'thumbnails/Xavier.webp',
-         views:789,
+         views:1000789,
          createdAt:'2010-07-02',
          description:'給我帽子',
         }, 

@@ -1,10 +1,11 @@
-import { Component, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { HeaderComponent } from "./header.component";
 import { SidebarComponent } from "./sidebar.component";
 import { SidebarFlowComponent } from "./sidebarflow.component";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { RouterModule, Router, NavigationEnd } from "@angular/router";
 import { CategoryBarComponent } from "./categorybar.component";
+import { filter } from "rxjs";
 
 @Component({
     selector:'app-root',
@@ -16,18 +17,23 @@ import { CategoryBarComponent } from "./categorybar.component";
     RouterModule,
     CategoryBarComponent],
     template:`
-<div class="h-screen flex flex-col">
+    <div class="h-screen flex flex-col">
         <header class="h-16 bg-white border-b border-gray-200 z-50 flex-shrink-0">
             <app-header (toggleMenu)="toggleFlowMenu()"/>
         </header>
 
-        <div class="flex-1 grid grid-cols-[96px_1fr] max-md:grid-cols-1 overflow-hidden">
+        <div class="flex-1"
+        [ngClass]="isWatchPage() ? 'block':'grid grid-cols-[96px_1fr] max-md:grid-cols-1'"
+        class="overflow-hidden">
+        @if(!isWatchPage()){
             <aside class="bg-white border-r border-gray-200 overflow-y-auto max-md:hidden">
                 <app-sidebar/>
             </aside>
-
-            <main class="bg-gray-50 px-5 scroll-py-3 overflow-y-auto"> 
-                <app-category-bar/>    
+        }
+         <main class="bg-gray-50 px-5 scroll-py-3 overflow-y-auto"> 
+                @if (!isWatchPage()) {
+                    <app-category-bar/>    
+                }
                 <router-outlet/>
             </main>
         </div>
@@ -45,7 +51,21 @@ import { CategoryBarComponent } from "./categorybar.component";
     `
 })
 export class AppComponent {
+    private router = inject(Router);
     flowMenuOpened = signal(false);
+    currentUrl = signal('');
+
+    isWatchPage = computed(()=>
+    this.currentUrl().includes('/watch') || this.currentUrl().includes('/video/'));
+
+    constructor() {
+        this.router.events
+        .pipe(filter(event=>event instanceof NavigationEnd))
+        .subscribe((event:NavigationEnd)=>{
+            this.currentUrl.set(event.url);
+        })
+    }
+
     toggleFlowMenu(){
         this.flowMenuOpened.update(open=>!open);
     }

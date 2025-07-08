@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { VideoService } from "./video.service";
 
+
 @Component ({
     selector:'app-watch',
     standalone:true,

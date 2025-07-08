@@ -25,7 +25,7 @@ import { RouterModule } from "@angular/router";
                         {{video.title}}
                     </h3>
                     <p class="text-sm text-gray-600">{{video.channel}}</p>
-                    <p class="text-sm text-gray-500">{{video.views}}</p>
+                    <p class="text-sm text-gray-500">{{formatViews(video.views)}}</p>
                     </div>
             </div>    
             </div>
@@ -36,4 +36,13 @@ import { RouterModule } from "@angular/router";
 })
 export class VideoGridComponent {
     readonly videos = input.required<Video[]>();
+
+    formatViews(views: number):string {
+        if(views >= 1000000) {
+            return Math.floor(views/1000000) + '百萬';
+        } else if (views >= 10000) {
+            return Math.floor(views/10000) + '萬';
+        }
+        return views.toString();
+    }
 }

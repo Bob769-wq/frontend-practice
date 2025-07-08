@@ -6,4 +6,5 @@ export interface Video {
     thumbnailUrl:string;
     views:number;
     createdAt:string;
+    description:string;
 }

@@ -10,7 +10,8 @@ export class VideoService {
          thumbnailUrl:'thumbnails/Xavier.webp',
          channelPic:'thumbnails/Xavier.webp',
          views:789,
-         createdAt:'2010-07-02'
+         createdAt:'2010-07-02',
+         description:'帽子給我',
         },    
         {id:'2',
          title:'帽子給我好嗎',
@@ -18,7 +19,8 @@ export class VideoService {
          thumbnailUrl:'thumbnails/test.jpeg',
          channelPic:'thumbnails/Xavier.webp',
          views:789,
-         createdAt:'2010-07-02'
+         createdAt:'2010-07-02',
+         description:'給我帽子',
         }, 
     ]);
 

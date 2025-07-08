@@ -22,6 +22,7 @@
             channelPic:'thumbnails/Polish_Jerry.jpg',
             views:65655,
             createdAt:'2014-07-03',
+            description:'never gonna give you up'
         }
     ])
  }

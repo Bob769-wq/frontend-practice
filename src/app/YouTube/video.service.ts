@@ -37,6 +37,6 @@ export class VideoService {
     getVideos = ():Video[] => this.videos();
 
     getVideoById(id:string):Video | undefined {
-        return this.videos().find(v=>v.id === id);
+        return this.videos().find(video=>video.id === id);
     }
 }

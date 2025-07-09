@@ -38,15 +38,17 @@ import { filter } from "rxjs";
             </main>
         </div>
 
-        @if (flowMenuOpened()) {
-            <button class="fixed inset-0 bg-black/30 z-40"
+      
+            <button class="fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ease-in-out"
+            [class.opacity-0]="!flowMenuOpened()"
+            [class.pointer-events-none]="!flowMenuOpened()"
             (click)="closeFlowMenu()" aria-label="closeSidebarFlow"></button>
             <app-sidebar-flow
             (closeMenu)="closeFlowMenu()"
-            class="fixed top-0 left-0 h-full bg-white w-[240px] z-50 shadow-lg transition-transform"
+            class="fixed top-0 left-0 h-full bg-white w-[240px] z-50 shadow-lg transform transition-transform duration-300 ease-in-out"
             [class.-translate-x-full]="!flowMenuOpened()"
             [class.translate-x-0]="flowMenuOpened()"></app-sidebar-flow>
-        }
+        
     </div>
     `
 })

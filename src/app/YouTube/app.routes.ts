@@ -5,7 +5,7 @@ import { HomeComponent } from "./home.component";
 export const appRoutes: Route[] = [
     {path:'', component:HomeComponent},
     {path:'subscriptions',
-     loadChildren:()=>import('./subscriptions/subscriptions.routes').then(m=>m.routes)
+     loadComponent:()=>import('./subscriptions/subscriptions.component').then(m=>m.SubscriptionsComponent)
     },
     {
         path:'watch/:videoId',

@@ -2,10 +2,11 @@ import { Component, input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Video } from "./video.model";
 import { RouterModule } from "@angular/router";
+import { ViewCountPipe } from "./view-count.pipe";
 @Component({
     selector:'app-video-grid',
     standalone:true,
-    imports:[CommonModule, RouterModule],
+    imports:[CommonModule, RouterModule, ViewCountPipe],
     template:`
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @for (video of videos(); track video.id) {
@@ -25,7 +26,7 @@ import { RouterModule } from "@angular/router";
                         {{video.title}}
                     </h3>
                     <p class="text-sm text-gray-600">{{video.channel}}</p>
-                    <p class="text-sm text-gray-500">{{formatViews(video.views)}}</p>
+                    <p class="text-sm text-gray-500">{{video.views | viewCount}}</p>
                     </div>
             </div>    
             </div>
@@ -37,12 +38,4 @@ import { RouterModule } from "@angular/router";
 export class VideoGridComponent {
     readonly videos = input.required<Video[]>();
 
-    formatViews(views: number):string {
-        if(views >= 1000000) {
-            return Math.floor(views/1000000) + '百萬';
-        } else if (views >= 10000) {
-            return Math.floor(views/10000) + '萬';
-        }
-        return views.toString();
-    }
 }

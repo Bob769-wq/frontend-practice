@@ -22,9 +22,9 @@ import { filter } from "rxjs";
             <app-header (toggleMenu)="toggleFlowMenu()"/>
         </header>
 
-        <div class="flex-1"
+        <div 
         [ngClass]="isWatchPage() ? 'block':'grid grid-cols-[96px_1fr] max-md:grid-cols-1'"
-        class="overflow-hidden">
+        class="overflow-hidden flex-1">
         @if(!isWatchPage()){
             <aside class="bg-white border-r border-gray-200 overflow-y-auto max-md:hidden">
                 <app-sidebar/>

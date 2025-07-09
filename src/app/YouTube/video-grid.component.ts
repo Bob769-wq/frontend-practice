@@ -1,8 +1,8 @@
 import { Component, input } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Video } from "./video.model";
 import { RouterModule } from "@angular/router";
 import { ViewCountPipe } from "./view-count.pipe";
+import { Video } from "./video.service";
 @Component({
     selector:'app-video-grid',
     standalone:true,

@@ -1,5 +1,15 @@
 import { Injectable, signal } from "@angular/core";
-import { Video } from "./video.model";
+
+export interface Video {
+    id:string;
+    title:string;
+    channel:string;
+    channelPic:string;
+    thumbnailUrl:string;
+    views:number;
+    createdAt:string;
+    description:string;
+}
 
 @Injectable({providedIn:'root'})
 export class VideoService {

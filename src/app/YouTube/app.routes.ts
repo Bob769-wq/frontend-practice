@@ -8,7 +8,7 @@ export const appRoutes: Route[] = [
      loadChildren:()=>import('./subscriptions/subscriptions.routes').then(m=>m.routes)
     },
     {
-        path:'watch/:id',
+        path:'watch/:videoId',
         loadComponent:()=>import('./watch.component').then(m=>m.WatchComponent)
     }
 ]

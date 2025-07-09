@@ -93,7 +93,7 @@ export class WatchComponent {
 
     constructor() {
         effect(()=>{
-            this.videoId.set(this.route.snapshot.paramMap.get('id')||'');
+            this.videoId.set(this.route.snapshot.paramMap.get('videoId')||'');
         });
     }
 
